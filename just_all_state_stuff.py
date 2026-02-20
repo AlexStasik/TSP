@@ -250,18 +250,18 @@ def build_table_with_phase_check(statevec, amp_eps=1e-12):
 
         rows.append({
             "idx": idx,
-            "bitstr": bitstr,
+            # "bitstr": bitstr,
             "path": path,
             "good_quantum": good_q,
             "is_valid_classical": int(valid_c),
             "phase_anc_bit": phase_bit,
-            "amp_abs": float(abs(amp)),
-            "prob": float(abs(amp)**2),
-            "phase": phase,
-            "dphi": dphi,
-            "cost_norm": cost,
-            "dcost": dcost,
-            "diff_wrapped": diff_wrapped,
+            "amp_abs": round(float(abs(amp)), 4),
+            "prob": round(float(abs(amp)**2), 4),
+            "phase": round(float(phase), 4),
+            "dphi": round(float(dphi), 4),
+            "cost_norm": round(float(cost), 4) if not np.isnan(cost) else np.nan,
+            "dcost": round(float(dcost), 4) if not np.isnan(dcost) else np.nan,
+            "diff_wrapped": round(float(diff_wrapped), 4) if not np.isnan(diff_wrapped) else np.nan,
         })
 
     return pd.DataFrame(rows)
@@ -299,5 +299,5 @@ print("Saved:", out_path)
 
 # optional preview
 print("\nTop-20 valid states (by increasing cost_norm):")
-print(df_sorted[df_sorted["is_valid_classical"] == 1][["path","good_quantum","cost_norm","phase","diff_wrapped"]].head(20).to_string(index=False))
+print(df_sorted[df_sorted["is_valid_classical"] == 1][["path","good_quantum","cost_norm","phase","diff_wrapped"]].to_string(index=False))
 # %%
