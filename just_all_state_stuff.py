@@ -16,6 +16,8 @@ import src.classical_funcs as cf
 # -------------------------
 # Problem + cost matrix
 # -------------------------
+np.random.seed(42)
+
 n = 5
 start_node = n - 1
 

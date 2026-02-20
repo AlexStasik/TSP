@@ -5,12 +5,19 @@ import pennylane as qml
 import numba
 
 def generate_cost_matrix(n, value_range=(0, 1)):
-    cost_matrix = np.zeros((n, n))
+    cost_matrix = np.random.uniform(*value_range, size=(n, n))
     for i in range(0, n):
-        for j in range(0, i):
-            cost_matrix[i, j] = np.random.uniform(*value_range)
-            cost_matrix[j, i] = cost_matrix[i, j]
+        cost_matrix[i, i] = 0
     return cost_matrix
+    # for i in range(0, n):
+    # cost_matrix = np.zeros((n, n))
+    # for i in range(0, n):
+    #     for j in range(0, n):
+    #         cost_matrix[i, j] = np.random.uniform(*value_range)
+    #         # cost_matrix[j, i] = cost_matrix[i, j]
+    #         if i == j:
+    #             cost_matrix[i, j] = 0
+    # return cost_matrix
 
 
 def generate_all_walks(n, start_node=0):
