@@ -18,7 +18,7 @@ import src.classical_funcs as cf
 # -------------------------
 np.random.seed(42)
 
-n = 6
+n = 7
 start_node = n - 1
 
 cost_matrix_raw = cf.generate_cost_matrix(n)
